@@ -1,13 +1,13 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    App/custom_stm.h
+  * @file    custom_stm.h
   * @author  MCD Application Team
   * @brief   Header for custom_stm.c module.
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2020-2021 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -36,7 +36,12 @@ typedef enum
 {
   /* My_P2P_Server */
   CUSTOM_STM_LED_C,
-  CUSTOM_STM_BUTTON_C,
+  CUSTOM_STM_SWITCH_C,
+  CUSTOM_STM_LONG_C,
+  /* My_Heart_Rate */
+  CUSTOM_STM_HRS_M,
+  CUSTOM_STM_HRS_SL,
+  CUSTOM_STM_HRS_CTRLP,
 } Custom_STM_Char_Opcode_t;
 
 typedef enum
@@ -44,9 +49,19 @@ typedef enum
   /* My_LED_Char */
   CUSTOM_STM_LED_C_READ_EVT,
   CUSTOM_STM_LED_C_WRITE_NO_RESP_EVT,
-  /* My_Button_Char */
-  CUSTOM_STM_BUTTON_C_NOTIFY_ENABLED_EVT,
-  CUSTOM_STM_BUTTON_C_NOTIFY_DISABLED_EVT,
+  /* My_Switch_Char */
+  CUSTOM_STM_SWITCH_C_NOTIFY_ENABLED_EVT,
+  CUSTOM_STM_SWITCH_C_NOTIFY_DISABLED_EVT,
+  /* MyLongChar */
+  CUSTOM_STM_LONG_C_NOTIFY_ENABLED_EVT,
+  CUSTOM_STM_LONG_C_NOTIFY_DISABLED_EVT,
+  /* My_HRS_Meas */
+  CUSTOM_STM_HRS_M_NOTIFY_ENABLED_EVT,
+  CUSTOM_STM_HRS_M_NOTIFY_DISABLED_EVT,
+  /* My_Sensor_Loc */
+  CUSTOM_STM_HRS_SL_READ_EVT,
+  /* My_HRS_CTRL_Point */
+  CUSTOM_STM_HRS_CTRLP_WRITE_EVT,
   CUSTOM_STM_NOTIFICATION_COMPLETE_EVT,
 
   CUSTOM_STM_BOOT_REQUEST_EVT
@@ -68,12 +83,35 @@ typedef struct
 } Custom_STM_App_Notification_evt_t;
 
 /* USER CODE BEGIN ET */
+typedef enum
+{
+  CUSTOM_STM_HRS_HRM_VALUE_FORMAT_UINT16       = 1,
+  CUSTOM_STM_HRS_HRM_SENSOR_CONTACTS_PRESENT   = 2,
+  CUSTOM_STM_HRS_HRM_SENSOR_CONTACTS_SUPPORTED = 4,
+  CUSTOM_STM_HRS_HRM_ENERGY_EXPENDED_PRESENT   = 8,
+  CUSTOM_STM_HRS_HRM_RR_INTERVAL_PRESENT       = 0x10
+} Custom_STM_HRS_HrmFlags_t;
+
+typedef enum
+{
+  CUSTOM_STM_HRS_BODY_SENSOR_LOCATION_OTHER    = 0,
+  CUSTOM_STM_HRS_BODY_SENSOR_LOCATION_CHEST    = 1,
+  CUSTOM_STM_HRS_BODY_SENSOR_LOCATION_WRIST    = 2,
+  CUSTOM_STM_HRS_BODY_SENSOR_LOCATION_FINGER   = 3,
+  CUSTOM_STM_HRS_BODY_SENSOR_LOCATION_HAND     = 4,
+  CUSTOM_STM_HRS_BODY_SENSOR_LOCATION_EAR_LOBE = 5,
+  CUSTOM_STM_HRS_BODY_SENSOR_LOCATION_FOOT     = 6
+} Custom_STM_HRS_BodySensorLocation_t;
 
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
 extern uint16_t SizeLed_C;
-extern uint16_t SizeButton_C;
+extern uint16_t SizeSwitch_C;
+extern uint16_t SizeLong_C;
+extern uint16_t SizeHrs_M;
+extern uint16_t SizeHrs_Sl;
+extern uint16_t SizeHrs_Ctrlp;
 
 /* USER CODE BEGIN EC */
 

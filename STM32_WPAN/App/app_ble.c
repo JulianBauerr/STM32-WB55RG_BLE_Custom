@@ -1,13 +1,13 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    App/app_ble.c
+  * @file    app_ble.c
   * @author  MCD Application Team
   * @brief   BLE Application
-  *****************************************************************************
+  ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2019-2021 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -225,10 +225,11 @@ uint8_t index_con_int, mutex;
 /**
  * Advertising Data
  */
-uint8_t a_AdvData[15] =
+uint8_t a_AdvData[19] =
 {
-  2, AD_TYPE_TX_POWER_LEVEL, 0 /* -0.15dBm */, /* Transmission Power */
-  6, AD_TYPE_COMPLETE_LOCAL_NAME, 'M', 'y', 'C', 's', 't',  /* Complete name */
+  2, AD_TYPE_TX_POWER_LEVEL, 0 /* 0dBm */, /* Transmission Power */
+  6, AD_TYPE_COMPLETE_LOCAL_NAME, 'M', 'y', 'C', 'S', 'T',  /* Complete name */
+  3, AD_TYPE_16_BIT_SERV_UUID_CMPLT_LIST, 0x0D, 0x18,
   4, AD_TYPE_MANUFACTURER_SPECIFIC_DATA, 0x30, 0x00, 0x00 /*  */,
 };
 
@@ -254,6 +255,7 @@ static void Connection_Interval_Update_Req(void);
 /* USER CODE END PFP */
 
 /* External variables --------------------------------------------------------*/
+extern RNG_HandleTypeDef hrng;
 
 /* USER CODE BEGIN EV */
 
@@ -356,7 +358,9 @@ void APP_BLE_Init(void)
   UTIL_SEQ_RegTask(1<<CFG_TASK_ADV_CANCEL_ID, UTIL_SEQ_RFU, Adv_Cancel);
 
   /* USER CODE BEGIN APP_BLE_Init_4 */
-
+#if (L2CAP_REQUEST_NEW_CONN_PARAM != 0)
+  UTIL_SEQ_RegTask(1<<CFG_TASK_CONN_UPDATE_REG_ID, UTIL_SEQ_RFU, Connection_Interval_Update_Req);
+#endif /* L2CAP_REQUEST_NEW_CONN_PARAM != 0 */
   /* USER CODE END APP_BLE_Init_4 */
 
   /**
@@ -669,22 +673,22 @@ SVCCTL_UserEvtFlowStatus_t SVCCTL_App_Notification(void *p_Pckt)
           aci_gatt_confirm_indication(BleApplicationContext.BleApplicationContext_legacy.connectionHandle);
         }
         break;
-
-        case ACI_HAL_WARNING_VSEVT_CODE:
+        
+      case ACI_HAL_WARNING_VSEVT_CODE:
         {
           aci_hal_warning_event_rp0 *p_warning_event;
-
-	      p_warning_event = (aci_hal_warning_event_rp0 *)p_blecore_evt->data;
-		  UNUSED(p_warning_event);
+          
+          p_warning_event = (aci_hal_warning_event_rp0 *)p_blecore_evt->data;
+          UNUSED(p_warning_event);
           APP_DBG_MSG(">>== ACI_HAL_WARNING_VSEVT_CODE\n");
           APP_DBG_MSG("Warning Type = 0x%02X\n", p_warning_event->Warning_Type);
-	      /* USER CODE BEGIN ACI_HAL_WARNING_VSEVT_CODE */
-
+          /* USER CODE BEGIN ACI_HAL_WARNING_VSEVT_CODE */
+          
           /* USER CODE END ACI_HAL_WARNING_VSEVT_CODE */
           break;
         }
         /* USER CODE BEGIN BLUE_EVT */
-
+        
         /* USER CODE END BLUE_EVT */
       }
       break; /* HCI_VENDOR_SPECIFIC_DEBUG_EVT_CODE */
@@ -1168,9 +1172,34 @@ static void Connection_Interval_Update_Req(void)
 
 /* USER CODE BEGIN FD_SPECIFIC_FUNCTIONS */
 void APP_BLE_Key_Button1_Action(void)
+{
+  SW1_Button_Action();
+}
+
+void APP_BLE_Key_Button2_Action(void)
+{
+  tBleStatus ret = BLE_STATUS_INVALID_PARAMS;
+
+  ret = aci_gap_clear_security_db();
+  if (ret != BLE_STATUS_SUCCESS)
   {
-    P2PS_APP_SW1_Button_Action();
+    APP_DBG_MSG("==>> aci_gap_clear_security_db - Fail, result: %d \n", ret);
   }
+  else
+  {
+    APP_DBG_MSG("==>> aci_gap_clear_security_db - Success\n");
+  }
+  APP_DBG_MSG("APP_BLE_Key_Button2_Action\n");
+}
+
+void APP_BLE_Key_Button3_Action(void)
+{
+#if (L2CAP_REQUEST_NEW_CONN_PARAM != 0 )    
+  UTIL_SEQ_SetTask( 1<<CFG_TASK_CONN_UPDATE_REG_ID, CFG_SCH_PRIO_0);
+#endif
+  
+  return;
+}
 /* USER CODE END FD_SPECIFIC_FUNCTIONS */
 /*************************************************************
  *
