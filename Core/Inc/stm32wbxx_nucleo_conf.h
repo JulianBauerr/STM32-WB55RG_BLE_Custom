@@ -1,15 +1,12 @@
-
 /**
   ******************************************************************************
   * @file    stm32wbxx_nucleo_conf.h
   * @author  MCD Application Team
-  * @brief   STM32WBxx_Nucleo board configuration file.
-  *          This file should be copied to the application folder and renamed
-  *          to stm32wbxx_nucleo_conf.h
+  * @brief   Discovery Module configuration file.
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2022 STMicroelectronics.
+  * Copyright (c) 2019 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -19,12 +16,13 @@
   ******************************************************************************
   */
 
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef STM32WBXX_NUCLEO_CONF_H
-#define STM32WBXX_NUCLEO_CONF_H
+#ifndef __STM32WBXX_NUCLEO_CONF_H
+#define __STM32WBXX_NUCLEO_CONF_H
 
 #ifdef __cplusplus
-extern "C" {
+ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
@@ -38,24 +36,25 @@ extern "C" {
   * @{
   */
 
-/** @defgroup STM32WBXX_NUCLEO_CONFIG Config
+/** @defgroup STM32WBXX_NUCLEO_CONFIG CONFIG
   * @{
   */
 
-/** @defgroup STM32C0XX_NUCLEO_CONFIG_Exported_Constants Exported Constants
+/** @defgroup STM32WBXX_NUCLEO_CONFIG_Exported_Constants Exported Constants
   * @{
   */
-/* Nucleo pin and part number defines */
-#define USE_STM32WBXX_NUCLEO
 
-/* COM define */
-#define USE_COM_LOG                         0U
-#define USE_BSP_COM_FEATURE                 0U
+/* Uncomment the following line to enable VCP */
+/* #define USE_VCP_CONNECTION */
 
-/* IRQ priorities */
-#define BSP_B1_IT_PRIORITY         15U
-#define BSP_B2_IT_PRIORITY         15U
-#define BSP_B3_IT_PRIORITY         15U
+/* COM port usage */
+#if defined(USE_VCP_CONNECTION)
+#define USE_BSP_COM_FEATURE                  1U
+#define USE_COM_LOG                          1U
+#else
+#define USE_BSP_COM_FEATURE                  0U
+#define USE_COM_LOG                          0U
+#endif /* USE_VCP_CONNECTION */
 
 /**
   * @}

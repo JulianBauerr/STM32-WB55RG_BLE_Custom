@@ -1,13 +1,12 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file    stm32_lpm_if.h
-  * @author  MCD Application Team
-  * @brief   Header for stm32_lpm_if.c module (device specific LP management)
+* @file    stm32_lpm_if.h
+* @brief   Header for stm32_lpm_if.c module (device specific LP management)
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2019-2021 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file

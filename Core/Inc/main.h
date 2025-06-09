@@ -1,13 +1,13 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : main.h
-  * @brief          : Header for main.c file.
-  *                   This file contains the common defines of the application.
+  * @file    main.h
+  * @author  MCD Application Team
+  * @brief   Header for main.c module
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2020-2021 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -28,9 +28,6 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32wbxx_hal.h"
-
-#include "stm32wbxx_nucleo.h"
-
 #include "app_conf.h"
 #include "app_entry.h"
 #include "app_common.h"
@@ -57,21 +54,25 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
+void MX_LPUART1_UART_Init(void);
+void MX_USART1_UART_Init(void);
 
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define JTMS_Pin GPIO_PIN_13
-#define JTMS_GPIO_Port GPIOA
-#define JTCK_Pin GPIO_PIN_14
-#define JTCK_GPIO_Port GPIOA
-#define B1_User_Pin GPIO_PIN_12
-#define B1_User_GPIO_Port GPIOC
-#define B1_User_EXTI_IRQn EXTI15_10_IRQn
-#define JTDO_Pin GPIO_PIN_3
-#define JTDO_GPIO_Port GPIOB
+#define SW1_User_Pin GPIO_PIN_4
+#define SW1_User_GPIO_Port GPIOC
+#define SW1_User_EXTI_IRQn EXTI4_IRQn
+#define SW2_User_Pin GPIO_PIN_0
+#define SW2_User_GPIO_Port GPIOD
+#define SW2_User_EXTI_IRQn EXTI0_IRQn
+#define SW3_User_Pin GPIO_PIN_1
+#define SW3_User_GPIO_Port GPIOD
+#define SW3_User_EXTI_IRQn EXTI1_IRQn
+#define Blue_Led_Pin GPIO_PIN_5
+#define Blue_Led_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

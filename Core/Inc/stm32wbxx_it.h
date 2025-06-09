@@ -2,11 +2,12 @@
 /**
   ******************************************************************************
   * @file    stm32wbxx_it.h
+  * @author  MCD Application Team
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2020-2021 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -22,12 +23,12 @@
 #define __STM32WBxx_IT_H
 
 #ifdef __cplusplus
-extern "C" {
+ extern "C" {
 #endif
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "app_common.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -55,8 +56,17 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
-void EXTI15_10_IRQHandler(void);
+void RTC_WKUP_IRQHandler(void);
+void EXTI0_IRQHandler(void);
+void EXTI1_IRQHandler(void);
+void EXTI4_IRQHandler(void);
+void DMA1_Channel4_IRQHandler(void);
+void USART1_IRQHandler(void);
+void LPUART1_IRQHandler(void);
+void IPCC_C1_RX_IRQHandler(void);
+void IPCC_C1_TX_IRQHandler(void);
 void HSEM_IRQHandler(void);
+void DMA2_Channel4_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
