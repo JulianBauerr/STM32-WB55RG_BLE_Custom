@@ -3,7 +3,6 @@ cmake_minimum_required(VERSION 3.22)
 enable_language(C ASM)
 # STM32CubeMX generated symbols (macros)
 set(MX_Defines_Syms 
-	USE_NUCLEO_64 
 	USE_HAL_DRIVER 
 	STM32WB55xx
     $<$<CONFIG:Debug>:DEBUG>
@@ -13,24 +12,23 @@ set(MX_Defines_Syms
 set(MX_Include_Dirs
     ${CMAKE_SOURCE_DIR}/Core/Inc
     ${CMAKE_SOURCE_DIR}/STM32_WPAN/App
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Inc
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Inc/Legacy
-    ${CMAKE_SOURCE_DIR}/Utilities/lpm/tiny_lpm
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/utilities
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/core
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/core/auto
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/core/template
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/svc/Inc
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/svc/Src
-    ${CMAKE_SOURCE_DIR}/Drivers/BSP/P-NUCLEO-WB55.Nucleo
-    ${CMAKE_SOURCE_DIR}/Drivers/CMSIS/Device/ST/STM32WBxx/Include
-    ${CMAKE_SOURCE_DIR}/Utilities/sequencer
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble
-    ${CMAKE_SOURCE_DIR}/Drivers/CMSIS/Include
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Inc
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Inc/Legacy
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Utilities/lpm/tiny_lpm
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/utilities
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/core
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/core/auto
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/core/template
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/svc/Inc
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/svc/Src
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/CMSIS/Device/ST/STM32WBxx/Include
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Utilities/sequencer
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/CMSIS/Include
 )
 
 # STM32CubeMX generated application sources
@@ -40,17 +38,11 @@ set(MX_Application_Src
     ${CMAKE_SOURCE_DIR}/STM32_WPAN/App/custom_app.c
     ${CMAKE_SOURCE_DIR}/STM32_WPAN/Target/hw_ipcc.c
     ${CMAKE_SOURCE_DIR}/Core/Src/main.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/gpio.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/ipcc.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/memorymap.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/rf.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/rtc.c
     ${CMAKE_SOURCE_DIR}/Core/Src/app_entry.c
     ${CMAKE_SOURCE_DIR}/Core/Src/app_debug.c
     ${CMAKE_SOURCE_DIR}/Core/Src/hw_timerserver.c
     ${CMAKE_SOURCE_DIR}/Core/Src/hw_uart.c
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32_lpm_if.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/usart.c
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32wbxx_it.c
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32wbxx_hal_msp.c
     ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
@@ -61,56 +53,54 @@ set(MX_Application_Src
 # STM32 HAL/LL Drivers
 set(STM32_Drivers_Src
     ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32wbxx.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_hsem.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_rcc.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc_ex.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_flash.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_flash_ex.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_gpio.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_dma.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_dma_ex.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pwr.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pwr_ex.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_cortex.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_exti.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_ipcc.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rtc.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rtc_ex.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_uart.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_uart_ex.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_usart.c
-    ${CMAKE_SOURCE_DIR}/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_usart_ex.c
-    ${CMAKE_SOURCE_DIR}/Drivers/BSP/P-NUCLEO-WB55.Nucleo/stm32wbxx_nucleo.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_hsem.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_rcc.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc_ex.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_flash.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_flash_ex.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_gpio.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_dma.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_dma_ex.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pwr.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_pwr_ex.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_cortex.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_exti.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_ipcc.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_uart.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_uart_ex.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rng.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rtc.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rtc_ex.c
 )
 
 # Drivers Midllewares
 
 
 set(Utilities_Src
-    ${CMAKE_SOURCE_DIR}/Utilities/lpm/tiny_lpm/stm32_lpm.c
-    ${CMAKE_SOURCE_DIR}/Utilities/sequencer/stm32_seq.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Utilities/lpm/tiny_lpm/stm32_lpm.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Utilities/sequencer/stm32_seq.c
 )
 set(STM32_WPAN_Src
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/tl_mbox.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci/shci.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/utilities/dbg_trace.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/utilities/otp.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/utilities/stm_list.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/utilities/stm_queue.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/core/template/osal.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_events.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_gap_aci.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_gatt_aci.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_hal_aci.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_hci_le.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_l2cap_aci.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/hci_tl.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/hci_tl_if.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/shci_tl.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/shci_tl_if.c
-    ${CMAKE_SOURCE_DIR}/Middlewares/ST/STM32_WPAN/ble/svc/Src/svc_ctl.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/tl_mbox.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/shci/shci.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/utilities/dbg_trace.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/utilities/otp.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/utilities/stm_list.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/utilities/stm_queue.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/core/template/osal.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_events.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_gap_aci.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_gatt_aci.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_hal_aci.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_hci_le.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/core/auto/ble_l2cap_aci.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/hci_tl.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/hci_tl_if.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/shci_tl.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/interface/patterns/ble_thread/tl/shci_tl_if.c
+    /Users/julian/STM32Cube/Repository/STM32Cube_FW_WB_V1.22.1/Middlewares/ST/STM32_WPAN/ble/svc/Src/svc_ctl.c
 )
 
 # Link directories setup

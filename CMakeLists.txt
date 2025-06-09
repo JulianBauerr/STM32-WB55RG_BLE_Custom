@@ -24,6 +24,9 @@ set(CMAKE_PROJECT_NAME STM32-WB55RG_BLE_Custom)
 # Include toolchain file
 include("cmake/gcc-arm-none-eabi.cmake")
 
+#include Drivers
+include_directories(Drivers/BSP/P-NUCLEO-WB55.Nucleo)
+
 # Enable compile command to ease indexing with e.g. clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
@@ -39,6 +42,12 @@ add_executable(${CMAKE_PROJECT_NAME})
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
+
+# Add BSP source file
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+        Drivers/BSP/P-NUCLEO-WB55.Nucleo/stm32wbxx_nucleo.c
+        # ... other user sources ...
+)
 
 # Link directories setup
 target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE

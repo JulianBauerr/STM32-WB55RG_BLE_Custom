@@ -35,7 +35,7 @@
 
 /* Private includes -----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stm32wbxx_nucleo.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

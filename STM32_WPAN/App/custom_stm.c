@@ -465,7 +465,7 @@ void SVCCTL_InitCustomSvc(void)
     /* max_attr_record to be updated if descriptors have been added */
 
   /* USER CODE END SVCCTL_InitService1 */
-  
+
   COPY_MY_P2P_SERVER_UUID(uuid.Char_UUID_128);
   ret = aci_gatt_add_service(UUID_TYPE_128,
                              (Service_UUID_t *) &uuid,

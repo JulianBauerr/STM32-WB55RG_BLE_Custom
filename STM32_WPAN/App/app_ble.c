@@ -673,16 +673,16 @@ SVCCTL_UserEvtFlowStatus_t SVCCTL_App_Notification(void *p_Pckt)
           aci_gatt_confirm_indication(BleApplicationContext.BleApplicationContext_legacy.connectionHandle);
         }
         break;
-        
-      case ACI_HAL_WARNING_VSEVT_CODE:
+
+        case ACI_HAL_WARNING_VSEVT_CODE:
         {
           aci_hal_warning_event_rp0 *p_warning_event;
-          
-          p_warning_event = (aci_hal_warning_event_rp0 *)p_blecore_evt->data;
-          UNUSED(p_warning_event);
+
+	      p_warning_event = (aci_hal_warning_event_rp0 *)p_blecore_evt->data;
+		  UNUSED(p_warning_event);
           APP_DBG_MSG(">>== ACI_HAL_WARNING_VSEVT_CODE\n");
           APP_DBG_MSG("Warning Type = 0x%02X\n", p_warning_event->Warning_Type);
-          /* USER CODE BEGIN ACI_HAL_WARNING_VSEVT_CODE */
+	      /* USER CODE BEGIN ACI_HAL_WARNING_VSEVT_CODE */
           
           /* USER CODE END ACI_HAL_WARNING_VSEVT_CODE */
           break;
